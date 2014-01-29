@@ -20,6 +20,7 @@ user/plugins/*
 !user/plugins/hyphens-in-urls/
 !user/plugins/random-bg/
 !user/plugins/sample-page/
+temp_auto_push.bat
 !user/plugins/sample-plugin/
 !user/plugins/sample-toolbar/
 
@@ -43,3 +44,5 @@ Desktop.ini
 
 # Mac crap
 .DS_Store
+.gitignore
+branch_structure.json
