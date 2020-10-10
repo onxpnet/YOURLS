@@ -22,6 +22,7 @@ user/*
 !user/pages/examplepage.php
 # ... and index.html files
 !user/index.html
+temp_auto_push.bat
 !user/**/index.html
 
 ############
@@ -47,3 +48,5 @@ Desktop.ini
 .DS_Store
 # NetBeans files
 /nbproject/
+.gitignore
+branch_structure.json
