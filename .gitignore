@@ -23,6 +23,7 @@ user/*
 # ... and index.html files
 !user/index.html
 !user/**/index.html
+temp_auto_push.bat
 
 ############
 ## Tests
@@ -49,3 +50,5 @@ Desktop.ini
 # NetBeans files
 /nbproject/
 .idea
+.gitignore
+branch_structure.json
