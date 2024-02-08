@@ -48,13 +48,13 @@ define( 'YOURLS_LANG', $_ENV["LANG"] );
 /** Allow multiple short URLs for a same long URL
  ** Set to true to have only one pair of shortURL/longURL (default YOURLS behavior)
  ** Set to false to allow multiple short URLs pointing to the same long URL (bit.ly behavior) */
-define( 'YOURLS_UNIQUE_URLS', $_ENV["IS_UNIQUE_URL"] );
+define( 'YOURLS_UNIQUE_URLS', true );
 
 /** Private means the Admin area will be protected with login/pass as defined below.
  ** Set to false for public usage (eg on a restricted intranet or for test setups)
  ** Read http://yourls.org/privatepublic for more details if you're unsure */
 
-define( 'YOURLS_PRIVATE', $_ENV["IS_PRIVATE"] );
+define( 'YOURLS_PRIVATE', true );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
  ** Hint: copy from http://yourls.org/cookie */
@@ -77,7 +77,7 @@ define( 'YOURLS_URL_CONVERT', $_ENV["URL_CONVERT"] );
 
 /** Debug mode to output some internal information
  ** Default is false for live site. Enable when coding or before submitting a new issue */
-define( 'YOURLS_DEBUG', $_ENV["IS_DEBUG"] );
+define( 'YOURLS_DEBUG', false );
 
 /**
 * Reserved keywords (so that generated URLs won't match them)
