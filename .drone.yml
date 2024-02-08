@@ -1,0 +1,41 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+- name: build-latest
+  image: plugins/kaniko
+  settings:
+    username:
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
+    registry:
+      from_secret: DOCKER_REGISTRY
+    repo: registry.dev.onxp.net/onxp/yourls
+    tags: latest
+  when:
+    branch: 
+    - develop
+
+- name: notification
+  image: appleboy/drone-discord
+  settings:
+    webhook_id: 
+      from_secret: WEBHOOK_ID
+    webhook_token:
+      from_secret: WEBHOOK_TOKEN
+    username: DroneCI
+    avatar_url: https://cdn.discordapp.com/attachments/892612412014997557/1153503922162511892/drone-ci.png
+    message: >
+      {{#success build.status}}
+        Build **yourls** is *done*. Check on https://drone.dev.onxp.net/onxpnet/yourls/{{build.number}} for more details.
+      {{else}}
+        Build **yourls** is *failed*. Check on https://drone.dev.onxp.net/onxpnet/yourls/{{build.number}} for more details.
+      {{/success}}
+
+trigger:
+  branch:
+  - develop
+  event:
+  - push
