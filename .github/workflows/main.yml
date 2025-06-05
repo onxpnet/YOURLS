@@ -25,11 +25,22 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Set image tag
+      id: set_tag
+      run: |
+        if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+          TAG=$(echo "${GITHUB_REF#refs/tags/}" | tr '[:upper:]' '[:lower:]')
+        else
+          TAG="latest"
+        fi
+        IMAGE="ghcr.io/${GITHUB_REPOSITORY,,}:$TAG"
+        echo "image=$IMAGE" >> $GITHUB_OUTPUT
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: ${{ startsWith(github.ref, 'refs/tags/') && format('ghcr.io/{0}:{1}', toLower(github.repository), toLower(github.ref_name)) || format('ghcr.io/{0}:latest', toLower(github.repository)) }}
+        tags: ${{ steps.set_tag.outputs.image }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
